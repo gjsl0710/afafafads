@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-    <title>My Discord OAuth2 App</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SinmulRestore</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
-    <div id="info">
-        success!
-    </div>
-    <a id="login" style="display: none;" href="your-oauth2-URL-here">Identify Yourself</a>
     <script>
         window.onload = () => {
             const fragment = new URLSearchParams(window.location.hash.slice(1));
@@ -17,12 +16,15 @@
                 return document.getElementById('login').style.display = 'block';
             }
     
-            fetch('https://discord.com/api/users/@me', {
-                headers: {
-                    authorization: `${tokenType} ${accessToken}`,
-                },
-            })
-                .then(result => result.json())
+            fetch(`https://discord.com/api/v8/oauth2/token`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: params,
+            
+        })                
+        .then(result => result.json())
                 .then(response => {
                     const { username, discriminator } = response;
                     document.getElementById('info').innerText += ` ${username}#${discriminator}`;
