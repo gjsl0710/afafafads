@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SinmulRestore</title>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+    <script>
+        swal({
+            position: 'center',
+            icon: 'error',
+            title: '인증 실패',
+            text : '해당 서버의 라이센스를 찾지못하였습니다.',
+            footer: '10초 뒤 자동 리다이렉트로 이동됩니다.',
+            showConfirmButton: false,
+            timer: 10000
+        }).then((result) => {
+            location.replace("https://discord.com")
+        })
+    </script>
+</body>
+</html>
